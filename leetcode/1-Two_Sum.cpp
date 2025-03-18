@@ -27,6 +27,7 @@
 
 // Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 
+// bruteforce
 class Solution
 {
 public:
@@ -45,5 +46,23 @@ public:
             }
         }
         return arr;
+    }
+};
+
+// optimal
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int c = target - nums[i];
+            if (mp.find(c) != mp.end())
+                return {i, mp[c]};
+            mp[nums[i]] = i;
+        }
+        return {};
     }
 };
