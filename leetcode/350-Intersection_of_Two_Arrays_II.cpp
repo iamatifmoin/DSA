@@ -15,6 +15,7 @@
 // 1 <= nums1.length, nums2.length <= 1000
 // 0 <= nums1[i], nums2[i] <= 1000
 
+// first
 class Solution
 {
 public:
@@ -33,6 +34,37 @@ public:
                 result.emplace_back(it);
                 map[it]--;
             }
+        }
+        return result;
+    }
+};
+
+// second
+class Solution
+{
+public:
+    vector<int> intersect(vector<int> &nums1, vector<int> &nums2)
+    {
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+
+        vector<int> result;
+        int m = nums1.size();
+        int n = nums2.size();
+        int i = 0, j = 0;
+
+        while (i < m && j < n)
+        {
+            if (nums1[i] == nums2[j])
+            {
+                result.emplace_back(nums1[i]);
+                i++;
+                j++;
+            }
+            else if (nums1[i] < nums2[j])
+                i++;
+            else
+                j++;
         }
         return result;
     }
