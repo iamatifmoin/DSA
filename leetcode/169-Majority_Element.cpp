@@ -54,3 +54,34 @@ public:
         return 0;
     }
 };
+
+// moore's voting algo
+class Solution
+{
+public:
+    int majorityElement(vector<int> &nums)
+    {
+        int count = 0;
+        int elem;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (count == 0)
+            {
+                count = 1;
+                elem = nums[i];
+            }
+            else if (nums[i] == elem)
+                count++;
+            else
+                count--;
+        }
+
+        // dont do this loop as it is mentioned that maj elem always exists
+        for (auto it : nums)
+            if (it == elem)
+                count++;
+        if (count > nums.size() / 2)
+            return elem;
+        return -1;
+    }
+};
