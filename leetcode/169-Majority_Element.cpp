@@ -17,6 +17,7 @@
 // 1 <= n <= 5 * 104
 // -109 <= nums[i] <= 109
 
+// bruteforce
 class Solution
 {
 public:
@@ -32,5 +33,24 @@ public:
             }
         }
         return maj;
+    }
+};
+
+// optimal
+class Solution
+{
+public:
+    int majorityElement(vector<int> &nums)
+    {
+        int maj = 0;
+        unordered_map<int, int> freq;
+        for (auto it : nums)
+            freq[it]++;
+        for (auto it : freq)
+        {
+            if (it.second > (nums.size() / 2))
+                return it.first;
+        }
+        return 0;
     }
 };

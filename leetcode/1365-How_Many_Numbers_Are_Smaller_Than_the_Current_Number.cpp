@@ -26,6 +26,7 @@
 // 2 <= nums.length <= 500
 // 0 <= nums[i] <= 100
 
+// bruteforce
 class Solution
 {
 public:
@@ -39,6 +40,31 @@ public:
             {
                 if (nums[j] < nums[i] && j != i)
                     count++;
+            }
+            res.emplace_back(count);
+            count = 0;
+        }
+        return res;
+    }
+};
+
+// better
+class Solution
+{
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int> &nums)
+    {
+        int j, count = 0;
+        vector<int> res;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            j = 0;
+            while (j < nums.size())
+            {
+                if (j != i)
+                    if (nums[j] < nums[i])
+                        count++;
+                j++;
             }
             res.emplace_back(count);
             count = 0;
