@@ -47,21 +47,18 @@ class Solution
 public:
     int maxProduct(int n)
     {
-        if (n > 9 && n < 100)
-        {
-            return (n / 10) * (n % 10);
-        }
 
-        vector<int> res;
         int d;
+        vector<int> dig;
         while (n > 0)
         {
             d = n % 10;
-            res.emplace_back(d);
+            dig.emplace_back(d);
             n = n / 10;
         }
 
-        sort(res.begin(), res.end());
-        return (res[res.size() - 1]) * (res[res.size() - 2]);
+        sort(dig.begin(), dig.end());
+
+        return dig[dig.size() - 1] * dig[dig.size() - 2];
     }
 };
